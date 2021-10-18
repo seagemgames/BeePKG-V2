@@ -93,7 +93,7 @@ export class BeeItem extends ComponentBase {
 					<option value="airlock.3ds">Glass Panel</option>
 				</optgroup>
 				<optgroup label="——— Custom ———">
-					<option disabled="false" value="custom">Custom (Advanced)</option>
+					<option value="custom">Custom (Advanced)</option>
 				</optgroup>
 			</select>
 			<br>
