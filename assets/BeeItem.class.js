@@ -5,9 +5,9 @@ export class BeeItem extends ComponentBase {
 		super();
 
 		this.json = {
-			name: 'My Item',
-			desc: 'This is an item.',
-			auth: 'Baguettery',
+			name: '',
+			desc: '',
+			auth: '',
 			placement: 0b111,
 			files:{
 				icon: null,
@@ -29,6 +29,7 @@ export class BeeItem extends ComponentBase {
 			'auth':			(x) => { this.json.auth = x.value },
 			'handle':		(x) => { this.json.handle = x.value },
 			'model-type':	(x) => { this.json.mdlpreset = x.value },
+			'model-file':	(x) => { this.json.mdlcustom = x.value },
 			'place-floor':	(x) => { this.json.placement = (this.json.placement & 0b011) + x.checked * 0b100 },
 			'place-wall':	(x) => { this.json.placement = (this.json.placement & 0b101) + x.checked * 0b010 },
 			'place-ceil':	(x) => { this.json.placement = (this.json.placement & 0b110) + x.checked * 0b001 },
@@ -89,9 +90,12 @@ export class BeeItem extends ComponentBase {
 					<option value="buttonball.3ds">Floor Button (Sphere)</option>
 				</optgroup>
 				<optgroup label="——— Custom ———">
-					<option disabled="true" value="custom">Custom (Disabled)</option>
+					<option disabled="false" value="custom">Custom (Advanced)</option>
 				</optgroup>
 			</select>
+			<br>
+			<label>Item Model (mdl)</label>
+			<input data-return="model-file" type="file"><br>
 			<br>
 			<label>Embed Voxel</label>		<input data-return="item-embed" type="checkbox"><br>
 			<label>Allow Placement On</label>
