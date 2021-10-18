@@ -18,24 +18,33 @@ const btnDownload = q('#btn-download')
 
 btnDownload.onclick = () => {
 	btnDownload.disabled = true;
-	pkg.json.items.filter(x => {
+	if (pkg.json.items.filter(x => {
+		// Ensure icons aren't too big, and exist
 		if (x.json.files.icon) {
 			if (x.json.files.icon.width > 1000 || x.json.files.icon.height > 1000) {
-				!confirm('Warning!\nAn uploaded image is abnormally large. This may cause extended processing times and possibly crash the window. To continue, press OK.')
+				!confirm('Warning!\nAn uploaded image is abnormally large. This may cause extended processing times and possibly crash the window. Suggested Resolution: 256x256px To continue, press OK.')
+				return;
 			}
 		} else {
-			!confirm('Warning!\nAn item is missing an icon. To continue, press OK.')
+			!confirm('Error!\nAn item is missing an icon.')
+			return true;
 		}
-	}).length
-	btnDownload.innerText = 'Processing...';
-	try {
-		pkg.export().then((x)=>{
-			saveAs(x, `ucp_${pkg.idl}.bee_pack`);
-			btnDownload.disabled = false;
-			btnDownload.innerText = 'Download';
-		})
-	} catch(err) {
-		btnDownload.innerText = "Export Failed! F12 for info"
+
+		// Ensure names exist
+		if (!x.json.name) {
+			!confirm('Error!\nAn item is missing a name.')
+			return true;
+		}
+	}).length) {
+		btnDownload.disabled = false;
+		btnDownload.innerText = 'Download';
+		return;
 	}
+	btnDownload.innerText = 'Processing...';
+	pkg.export().then((x)=>{
+		saveAs(x, `ucp_${pkg.idl}.bee_pack`);
+		btnDownload.disabled = false;
+		btnDownload.innerText = 'Download';
+	})
 }
 
