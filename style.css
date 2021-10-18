@@ -1,7 +1,7 @@
 :root {
-	--main-hl: rgb(255, 166, 31);
-	--light-hl: rgb(230, 122, 0);
-	--trans-hl: rgba(255, 166, 31, 0.2);
+	--main-hl: rgb(235, 137, 230);
+	--light-hl: rgb(224, 163, 221);
+	--trans-hl: rgb(224, 163, 221, 0.2);
 }
 
 html, body {
@@ -20,7 +20,7 @@ h3 {
 }
 
 h3::after {
-	content: 'v2.5';
+	content: '1.0';
 	margin: 5px;
 	background: var(--main-hl);
 	color: #222;
