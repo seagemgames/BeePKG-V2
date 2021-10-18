@@ -64,7 +64,7 @@ export class BeeItem extends ComponentBase {
 			<input data-return="desc" placeholder="Item Description"><br>
 			<input data-return="auth" placeholder="Item Author">
 			<hr>
-			<label>Rotation Handle</label>
+			<label>Position Handle</label>
 			<select data-return="handle">
 				<option value="HANDLE_NONE">No Handle</option>
 				<option value="HANDLE_4_DIRECTIONS">4 Directions</option>
@@ -89,6 +89,9 @@ export class BeeItem extends ComponentBase {
 					<option value="buttoncube.3ds">Floor Button (Cube)</option>
 					<option value="buttonball.3ds">Floor Button (Sphere)</option>
 				</optgroup>
+				<optgroup label="——— Panels ———">
+					<option value="airlock.3ds">Glass Panel</option>
+				</optgroup>
 				<optgroup label="——— Custom ———">
 					<option disabled="false" value="custom">Custom (Advanced)</option>
 				</optgroup>
@@ -111,9 +114,10 @@ export class BeeItem extends ComponentBase {
 			<label>Item Picker Type</label>
 			<select data-return="item-picker">
 				<option value="single">(1) Single Instance</option>
-				<option value="singleWB">(2) White/Black Instance</option>
+				<option value="singleWB">(1+1) White/Black Instances</option>
 				<option value="buttontype">(3) Button Type Instances</option>
-				<option value="buttontypeWB">(6) White/Black Button Type Instance</option>
+				<option value="cubetype">(5) Cube Type Instances</option>
+				<option value="buttontypeWB">(3+3) White/Black Button Type Instance</option>
 			</select><br>
 			<div data-inst-index=0><label>Item Instance 1</label><input data-return="item-inst-0" type="file"></div>
 			<div data-inst-index=1><label>Item Instance 2</label><input data-return="item-inst-1" type="file"></div>
@@ -157,20 +161,26 @@ export class BeeItem extends ComponentBase {
 				setState(5,true,'(Unused)');
 				break;
 			case 'buttontype':
-					setState(0,false,'Item Instance (Weighted)');
-					setState(1,true,'(Unused)');
-					setState(2,false,'Item Instance (Cube)');
-					setState(3,true,'(Unused)');
-					setState(4,false,'Item Instance (Sphere)');
-					setState(5,true,'(Unused)');
-					break;
-			case 'buttontypeWB':
+				setState(0,false,'Item Instance (Weighted)');
+				setState(1,true,'(Unused)');
+				setState(2,false,'Item Instance (Cube)');
+				setState(3,true,'(Unused)');
+				setState(4,false,'Item Instance (Sphere)');
+				setState(5,true,'(Unused)');
+				break;
+			case 'cubetype':
 				setState(0,false,'Item Instance (Weighted) (White)');
 				setState(1,false,'Item Instance (Weighted) (Black)');
 				setState(2,false,'Item Instance (Cube) (White)');
 				setState(3,false,'Item Instance (Cube) (Black)');
 				setState(4,false,'Item Instance (Sphere) (White)');
-				setState(5,false,'Item Instance (Sphere) (Black)');
+				break;
+			case 'buttontypeWB':
+				setState(0,false,'Item Instance (Standard)');
+				setState(1,false,'Item Instance (Companion)');
+				setState(2,false,'Item Instance (Reflective)');
+				setState(3,false,'Item Instance (Sphere)');
+				setState(4,false,'Item Instance (Franken)');
 				break;
 		}
 	}
