@@ -28,10 +28,14 @@ btnDownload.onclick = () => {
 		}
 	}).length
 	btnDownload.innerText = 'Processing...';
-	pkg.export().then((x)=>{
-		saveAs(x, `ucp_${pkg.idl}.bee_pack`);
-		btnDownload.disabled = false;
-		btnDownload.innerText = 'Download';
-	})
+	try {
+		pkg.export().then((x)=>{
+			saveAs(x, `ucp_${pkg.idl}.bee_pack`);
+			btnDownload.disabled = false;
+			btnDownload.innerText = 'Download';
+		})
+	} catch(err) {
+		btnDownload.innerText = "Export Failed! F12 for info"
+	}
 }
 
